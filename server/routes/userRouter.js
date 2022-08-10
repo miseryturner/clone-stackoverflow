@@ -3,6 +3,8 @@ const router = new Router
 
 router.post('/registration',) // регистрация пользователя
 router.post('/login',)        // авторизация пользователя
-router.get('/auth',)          // проверка на авторизацию
+router.get('/auth', (req, res) => {
+    res.json({message: 'router: on'})
+})          // проверка на авторизацию
 
 module.exports = router
