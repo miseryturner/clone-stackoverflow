@@ -25,7 +25,7 @@ const Answer = sequelize.define('answer', {
 
 const Type = sequelize.define('type', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title: {type: DataTypes.STRING, allowNull: false}
+    title: {type: DataTypes.STRING, allowNull: false, unique: true}
 })
 
 User.hasMany(Question)
