@@ -53,7 +53,7 @@ class QuestionController {
     }
 
     async edit(req, res) {
-
+        //TODO: доделать
     }
 }
 
