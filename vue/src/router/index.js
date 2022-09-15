@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
@@ -9,14 +9,38 @@ const routes = [
   },
   {
     path: '/auth',
-    name: 'authPage',
-    component: () => import('../views/AuthPage.vue')
-  }
+    name: 'auth',
+    component: () => import('../views/AuthView.vue')
+  },
+  {
+    path: '/questions/',
+    name: 'question-list',
+    // meta: { auth: true },
+    component: () => import('../views/QuestionListView.vue')
+  },
+  {
+    path: '/questions/:id',
+    name: 'question-detail',
+    component: () => import('../views/QuestionView.vue')
+  },
+  { path: "/:pathMatch(.*)*", component: () => import('../views/NotFoundView.vue') }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(info => info.meta.auth)) {
+    if(!localStorage.getItem('token') || localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
+      next('/auth')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
