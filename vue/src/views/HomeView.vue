@@ -1,5 +1,11 @@
 <template>
-  <section class="text-gray-600 body-font">
+  <section
+    :class="{
+      'text-gray-400 bg-gray-900': theme == 'dark',
+      'text-gray-600': theme == 'light'
+    }"
+    class="text-gray-600 body-font transition"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Clone Stack Overflow</h1>
@@ -81,7 +87,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  
+  computed: {
+    ...mapGetters({
+      theme: 'changeTheme'
+    })
+  }
 }
 </script>
