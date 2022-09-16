@@ -15,13 +15,18 @@ const routes = [
   {
     path: '/questions/',
     name: 'question-list',
-    // meta: { auth: true },
     component: () => import('../views/QuestionListView.vue')
   },
   {
     path: '/questions/:id',
     name: 'question-detail',
     component: () => import('../views/QuestionView.vue')
+  },
+  {
+    path: '/make-question/',
+    name: 'make-question',
+    meta: { auth: true },
+    component: () => import('../views/MakeQuestionView.vue')
   },
   { path: "/:pathMatch(.*)*", component: () => import('../views/NotFoundView.vue') }
 ]
